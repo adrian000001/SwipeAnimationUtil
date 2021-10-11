@@ -1,0 +1,3 @@
+include ':SwipeAnimationModule'
+include ':app'
+rootProject.name = "SwipeAnimationUtil"
