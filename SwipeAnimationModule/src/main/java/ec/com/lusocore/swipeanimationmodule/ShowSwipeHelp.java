@@ -17,6 +17,10 @@ public class ShowSwipeHelp {
     public final static int RIGTH = 3;
 
 
+    private long startDelay = 900;
+    private long itemDelay = 100;
+
+
     private Dialog dialog;
 
     public void showHelp(Context context,List<Integer> swipeArray){
@@ -25,7 +29,7 @@ public class ShowSwipeHelp {
         try{
 
 
-          execAnimation(swipeArray,0,context);
+            execAnimation(swipeArray,0,context,startDelay);
 
 
 
@@ -43,9 +47,12 @@ public class ShowSwipeHelp {
 
 
 
-    private void execAnimation(List<Integer> swipeArray, int position,Context context){
+    private void execAnimation(List<Integer> swipeArray, int position,Context context,long delay){
         try {
 
+
+            if(position == swipeArray.size())
+                return;
 
             final Handler handlerStart = new Handler();
             final Runnable rs = new Runnable() {
@@ -64,6 +71,9 @@ public class ShowSwipeHelp {
                                     dialog.hide();
                                 }
 
+                                int pos = position + 1;
+                                execAnimation(swipeArray,pos,context,itemDelay);
+
 
                             }
                         };
@@ -79,7 +89,7 @@ public class ShowSwipeHelp {
                 }
             };
 
-            handlerStart.postDelayed(rs, 1500);
+            handlerStart.postDelayed(rs, delay);
 
 
         }catch (Exception e){
