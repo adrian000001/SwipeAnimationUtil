@@ -68,7 +68,9 @@ public class ShowSwipeHelp {
                         final Runnable r = new Runnable() {
                             public void run() {
                                 if(dialog != null){
-                                    dialog.hide();
+                                    dialog.dismiss();
+                                    dialog.cancel();
+
                                 }
 
                                 int pos = position + 1;
@@ -107,7 +109,7 @@ public class ShowSwipeHelp {
 
             dialog = new Dialog(context, R.style.Dialog_Translucent);
             dialog.setContentView(swipeHelp);
-            dialog.setCancelable(false);
+            dialog.setCancelable(true);
             dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT);
 
